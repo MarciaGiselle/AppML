@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    >
+    <size
+        android:height="50dp">
+
+    </size>
+
+    <!-- Color de fondo de la vista -->
+    <solid
+        android:color="#E0E0E0" >
+    </solid>
+
+
+    <!-- Si queremos añadir algún padding -->
+    <padding
+        android:left="20dp"
+        android:top="4dp"
+        android:right="20dp"
+        android:bottom="4dp"    >
+    </padding>
+
+    <!-- Aquí indicamos el radio a aplicar a las textEdit -->
+    <corners
+        android:radius="50dp"   >
+    </corners>
+
+</shape>
