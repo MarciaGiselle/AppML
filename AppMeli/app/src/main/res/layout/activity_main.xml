@@ -66,35 +66,36 @@
             android:layout_height="0dp"
             android:orientation="vertical">
 
-
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="40dp"
-                android:layout_margin="10dp">
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="#979797"
+                android:fillViewport="true">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView"
-                        android:layout_width="389dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="10dp"
-                        app:cardBackgroundColor="#FFC107"></androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="380dp"
+                        android:layout_height="150dp"
+                        app:srcCompat="@drawable/ic_bannermeli_dos" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView2"
-                        android:layout_width="389dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="10dp"
-                        app:cardBackgroundColor="#5E4B13"></androidx.cardview.widget.CardView>
-
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="380dp"
+                        android:layout_height="150dp"
+                        android:background="#FFC107"
+                        app:srcCompat="@drawable/ic_bannermeli_tarjeta" />
                 </LinearLayout>
-
             </HorizontalScrollView>
 
             <androidx.cardview.widget.CardView
@@ -276,8 +277,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
