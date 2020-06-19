@@ -7,88 +7,90 @@
     android:background="@color/greyMasLight"
     tools:context=".ProductActivity">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorMeli"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:background="@drawable/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/searchButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button"
-        android:text="🔎"
-        app:layout_constraintBottom_toBottomOf="@+id/searchInput"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="0.822"
-        app:layout_constraintStart_toEndOf="@+id/searchInput"
-        app:layout_constraintTop_toTopOf="@+id/searchInput"
-        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/searchInput"
-        android:layout_width="310dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
+        style="@style/search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints="@android:string/cancel"
         android:background="@drawable/input"
-        android:hint="Buscar en Mercado Libre"
+        android:hint="@string/search"
         android:imeOptions="actionSearch"
-        android:textSize="14sp"
-        android:backgroundTint="@android:color/white"
-        android:textColorHint="@android:color/darker_gray"
-        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/searchButton"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/searchButton"
+        style="@style/description"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints="@android:string/cancel"
+        android:background="@drawable/button_search"
+        android:text="🔎"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
-            android:id="@+id/padre"
+            android:id="@+id/padre2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/white"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="40dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#FFF">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <ImageView
                         android:id="@+id/imageProduct"
-                        android:layout_width="389dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/gallery_icon_vector_26537164" />
+                        android:layout_width="380dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/gallery_icon_vector_26537164"
+                        android:contentDescription="TODO" />
 
                     <ImageView
                         android:id="@+id/imageProduct2"
-                        android:layout_width="389dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/gallery_icon_vector_26537164" />
+                        android:layout_width="380dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/gallery_icon_vector_26537164"
+                        android:contentDescription="TODO" />
+
                 </LinearLayout>
 
             </HorizontalScrollView>
@@ -96,178 +98,149 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/vendidos"
+                    style="@style/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Nuevo - 605 vendidos"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="15sp"
-                    android:visibility="visible" />
+                    android:text="Nuevo - 605 vendidos" />
 
                 <TextView
                     android:id="@+id/titulo1"
+                    style="@style/title_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Zapatillas Running Nike"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"
-                    android:visibility="visible" />
+                    android:text="Zapatillas Running Nike" />
 
                 <TextView
                     android:id="@+id/opiniones"
+                    style="@style/opinions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
-                    android:fontFamily="sans-serif-light"
-                    android:text="★ ★ ★ ★ ★ 80 opiniones"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp"
-                    android:visibility="visible" />
+                    android:text="★ ★ ★ ★ ★ 80 opiniones" />
 
                 <TextView
                     android:id="@+id/precio"
+                    style="@style/price"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="sans-serif-light"
-                    android:text="$ 4500 "
-                    android:textColor="@android:color/black"
-                    android:textSize="32sp"
-                    android:visibility="visible" />
+                    android:layout_height="match_parent"
+                    android:text="$ 4500 " />
 
                 <TextView
                     android:id="@+id/link1"
+                    style="@style/text_blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/blue"
-                    android:padding="2dp"
-                    android:text="Envío con normalidad"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="10sp"
-                    android:visibility="visible" />
+                    android:background="@drawable/text_blue"
+                    android:text="Envío con normalidad" />
 
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/icono"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Pagá en 6 cuotas sin interés"
-                        android:textColor="@color/greenPromo"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                        app:layout_constraintStart_toEndOf="@+id/imageView"
-                        app:layout_constraintTop_toTopOf="@+id/imageView"
-                        app:layout_constraintVertical_bias="0.323" />
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/icono"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="@string/icon" />
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            style="@style/legend"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Pagá en 6 cuotas sin interés"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                            app:layout_constraintStart_toEndOf="@+id/imageView"
+                            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
-                        android:id="@+id/view"
+                        style="@style/line"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@android:color/darker_gray"
-                        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                        android:background="@drawable/line" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/icono"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="12dp"
-                        android:text="Devolución gratis"
-                        android:textColor="@color/greenPromo"
-                        android:textSize="12sp"
-                        app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
 
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="6dp"
-                        android:text="Tenés 30 días desde que lo recibís"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="10sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                        app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2"
-                        app:layout_constraintVertical_bias="0.0" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/icono"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="@string/icon"/>
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            style="@style/legend"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Devolucion gratis"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                            app:layout_constraintStart_toEndOf="@+id/imageView2"
+                            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
-                    android:background="#FFFFFF"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:background="@drawable/card"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/color"
+                        style="@style/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="Color : Azul"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:text="Color : Azul" />
 
                     <View
+                        style="@style/line"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/line" />
 
                     <TextView
                         android:id="@+id/cantidad"
+                        style="@style/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Cantidad : 1"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:text="Cantidad : 1" />
                 </LinearLayout>
 
 
@@ -275,37 +248,54 @@
                     android:id="@+id/buy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Comprar"
                     android:layout_marginBottom="5dp"
-                    android:background="@drawable/button"/>
+                    android:background="@drawable/button"
+                    android:text="@string/btn_buy" />
 
 
                 <Button
                     android:id="@+id/setToCarrito"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Agregar al carrito"
                     android:layout_marginBottom="20dp"
-                    android:textColor="@color/blue"
-                    android:background="@drawable/button_outline"/>
+                    android:background="@drawable/button_outline"
+                    android:text="@string/btn_carrito"
+                    android:textColor="@color/blue" />
 
                 <TextView
+                    style="@style/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="✪ Compra protegida"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"/>
+                    android:text="@string/second_legend_footer" />
 
                 <TextView
+                    style="@style/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="✪ Sumás 41 Mercado Puntos"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"/>
-
+                    android:text="@string/legend_footer" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="313dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

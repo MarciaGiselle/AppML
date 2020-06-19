@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Meli Taller</string>
+    <string name="btn_buy">Comprar</string>
+    <string name="btn_carrito">Agregar al carrito</string>
+    <string name="legend_footer">✪ Sumás Mercado Puntos</string>
+    <string name="second_legend_footer">✪ Compra protegida</string>
+    <string name="icon">Icono</string>
+    <string name="search">Buscar en Mercado Libre</string>
 </resources>
