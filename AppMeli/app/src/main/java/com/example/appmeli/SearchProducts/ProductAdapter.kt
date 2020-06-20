@@ -1,6 +1,7 @@
 package com.example.appmeli.SearchProducts
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmeli.R
+import com.squareup.picasso.Picasso
 
 class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
 
     private val productList = mutableListOf<Article>()
+    private var productClickListener : ProductClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val productView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_product, parent, false)
@@ -26,13 +29,30 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
         val product = productList[position]
         holder.title.text = product.title
         holder.price.text = "$ " + product.price
-        holder.legend.text = "Condición: " + if(product.condition == "new") "Nuevo" else "Usado" 
+        holder.legend.text = "Condición: " + if(product.condition == "new") "Nuevo" else "Usado"
         holder.description.text =  product.id
+
+        Picasso.get()
+            .load(product.imageUrl)
+            .error(R.drawable.ic_android_error)
+            .into(holder.cover)
+
+        holder.itemView.setOnClickListener{
+            productClickListener?.onProductClick(product)
+        }
+
+
     }
 
-    fun updateArticles( results: List<Article>){
+    fun updateArticles( results: List<Article>?){
         productList.clear()
-        productList.addAll(results)
+        if(results != null) {
+            productList.addAll(results)
+        }
+    }
+
+    fun setProductClickListener (clickListener: ProductClickListener){
+        this.productClickListener = clickListener
     }
 
 }
@@ -43,4 +63,8 @@ class  ProductViewHolder( view: View): RecyclerView.ViewHolder(view){
     val description : TextView = view.findViewById(R.id.description)
     val price : TextView = view.findViewById(R.id.price)
     val legend : TextView = view.findViewById(R.id.legend)
+}
+
+interface ProductClickListener{
+    fun onProductClick(article: Article){}
 }

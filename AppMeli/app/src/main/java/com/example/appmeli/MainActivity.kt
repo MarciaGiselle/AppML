@@ -8,10 +8,7 @@ import android.util.Log
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appmeli.SearchProducts.Article
-import com.example.appmeli.SearchProducts.ProductAdapter
-import com.example.appmeli.SearchProducts.RetrofitProductService
-import com.example.appmeli.SearchProducts.SearchResult
+import com.example.appmeli.SearchProducts.*
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -45,10 +42,7 @@ class MainActivity : AppCompatActivity() {
         setSearchListener()
         setUpRecyclerView()
 
-        textView = findViewById(R.id.joke)
 
-       /* val intent = Intent(this, ProductActivity::class.java)
-        startActivity(intent)*/
 
         val imageCarrousel1 = findViewById<ImageView>(R.id.imageCarrousel1)
         val imageCarrousel2 = findViewById<ImageView>(R.id.imageCarrousel2)
@@ -68,6 +62,14 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerArticles)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = productAdapter
+        productAdapter.setProductClickListener(object : ProductClickListener {
+            override fun onProductClick(article: Article) {
+                Toast.makeText(this@MainActivity, article.title, Toast.LENGTH_LONG).show()
+                 val intent = Intent(this@MainActivity, ProductActivity::class.java)
+                startActivity(intent)
+            }
+
+        })
     }
 
     private fun setSearchListener(){
@@ -109,7 +111,6 @@ class MainActivity : AppCompatActivity() {
                     })
             }
     }
-
 
 }
 

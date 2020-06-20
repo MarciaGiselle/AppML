@@ -42,20 +42,16 @@
             android:id="@+id/padre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="5dp">
 
-            <TextView
-                android:id="@+id/joke"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/blue"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/darker_gray"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -76,7 +72,7 @@
                         android:id="@+id/imageCarrousel2"
                         android:layout_width="340dp"
                         android:layout_height="100dp"
-                        android:contentDescription="@string/carrousel"/>
+                        android:contentDescription="@string/carrousel" />
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -85,9 +81,6 @@
                 android:id="@+id/recyclerArticles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-
-
         </LinearLayout>
     </ScrollView>
 
