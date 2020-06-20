@@ -42,7 +42,7 @@
         android:layout_marginBottom="8dp"
         android:autofillHints="@android:string/cancel"
         android:background="@drawable/button_search"
-        android:text="🔎"
+        android:text="@string/lupa"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -75,21 +75,16 @@
                     android:padding="10dp">
 
                     <ImageView
-                        android:id="@+id/imageProduct"
-                        android:layout_width="380dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center"
-                        app:srcCompat="@drawable/gallery_icon_vector_26537164"
-                        android:contentDescription="TODO" />
+                        android:id="@+id/imageCarrousel1"
+                        android:layout_width="340dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="@string/carrousel" />
 
                     <ImageView
-                        android:id="@+id/imageProduct2"
-                        android:layout_width="380dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/gallery_icon_vector_26537164"
-                        android:contentDescription="TODO" />
+                        android:id="@+id/imageCarrousel2"
+                        android:layout_width="340dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="@string/carrousel"/>
 
                 </LinearLayout>
 

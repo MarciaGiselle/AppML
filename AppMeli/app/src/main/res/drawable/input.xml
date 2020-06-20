@@ -9,7 +9,7 @@
     </size>
 
     <solid
-        android:color="#E0E0E0" >
+        android:color="@color/greyLight" >
     </solid>
 
 

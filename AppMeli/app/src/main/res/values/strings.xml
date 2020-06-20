@@ -6,4 +6,6 @@
     <string name="second_legend_footer">✪ Compra protegida</string>
     <string name="icon">Icono</string>
     <string name="search">Buscar en Mercado Libre</string>
+    <string name="carrousel">carrousel</string>
+    <string name="lupa">🔎</string>
 </resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card"
+        app:cardBackgroundColor="@android:color/background_light"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Titulo Card" />
+
+            <View
+                style="@style/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/line" />
+
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="wrap_content"
+                android:layout_height="198dp"
+                app:srcCompat="@drawable/gallery_icon_vector_26537164" />
+
+            <TextView
+                android:id="@+id/description"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Producto 1 Descripcion" />
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$ 200 " />
+
+            <TextView
+                android:id="@+id/legend"
+                style="@style/legend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cuotas sin interés" />
+
+            <View
+                style="@style/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/line" />
+
+            <TextView
+                android:id="@+id/link"
+                style="@style/textLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver más >" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
