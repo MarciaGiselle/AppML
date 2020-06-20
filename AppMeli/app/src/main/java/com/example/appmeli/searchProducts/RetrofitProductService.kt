@@ -1,4 +1,4 @@
-package com.example.appmeli.SearchProducts
+package com.example.appmeli.searchProducts
 
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -18,7 +18,7 @@ class RetrofitProductService {
         return service.search(q)
     }
 
-    fun getArticle(id : String) : Call<Article>{
+    fun getArticle(id : String) : Call<ArticleResponse>{
         return service.getArticle(id)
     }
 }

@@ -16,37 +16,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+
+    <SearchView
         android:id="@+id/searchInput"
-        style="@style/search"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:autofillHints="@android:string/cancel"
         android:background="@drawable/input"
-        android:hint="@string/search"
-        android:imeOptions="actionSearch"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="@+id/searchButton"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/searchButton"
-        style="@style/description"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:autofillHints="@android:string/cancel"
-        android:background="@drawable/button_search"
-        android:text="@string/lupa"
+        android:queryHint="@string/search"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -57,87 +41,67 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
-            android:id="@+id/padre2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            >
 
-            <HorizontalScrollView
+            <ImageView
+                android:id="@+id/imageProduct"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_marginTop="10dp"
-                android:background="#FFF">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:id="@+id/imageCarrousel1"
-                        android:layout_width="340dp"
-                        android:layout_height="100dp"
-                        android:contentDescription="@string/carrousel" />
-
-                    <ImageView
-                        android:id="@+id/imageCarrousel2"
-                        android:layout_width="340dp"
-                        android:layout_height="100dp"
-                        android:contentDescription="@string/carrousel"/>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@drawable/image"
+                android:contentDescription="@string/carrousel"
+                tools:src="@tools:sample/avatars" />
 
                 <TextView
-                    android:id="@+id/vendidos"
+                    android:id="@+id/condicioncantidad"
                     style="@style/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Nuevo - 605 vendidos" />
+                    tools:text="condicioncantidad"/>
 
                 <TextView
-                    android:id="@+id/titulo1"
+                    android:id="@+id/titleProduct"
                     style="@style/title_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Zapatillas Running Nike" />
+                    tools:text="Titulo"/>
 
                 <TextView
-                    android:id="@+id/opiniones"
+                    android:id="@+id/subtitle"
                     style="@style/opinions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
-                    android:text="★ ★ ★ ★ ★ 80 opiniones" />
+                    tools:text="Subtitulo" />
 
                 <TextView
-                    android:id="@+id/precio"
+                    android:id="@+id/priceProduct"
                     style="@style/price"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="$ 4500 " />
+                    android:layout_marginBottom="10dp"
+                    tools:text="Price"/>
 
                 <TextView
-                    android:id="@+id/link1"
+                    android:id="@+id/warranty"
                     style="@style/text_blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/text_blue"
-                    android:text="Envío con normalidad" />
+                    tools:text="Envío con normalidad"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -151,18 +115,20 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="5dp"
-                            android:src="@drawable/icono"
+                            android:layout_marginStart="12dp"
+                            android:contentDescription="@string/icon"
+                            android:background="@drawable/icono"
+                            android:src="@drawable/ic_grade_black_24dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:contentDescription="@string/icon" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/cuotas"
                             style="@style/legend"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Pagá en 6 cuotas sin interés"
+                            android:layout_marginStart="10dp"
+                            tools:text="cuotas"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView"
                             app:layout_constraintStart_toEndOf="@+id/imageView"
                             app:layout_constraintTop_toTopOf="@+id/imageView" />
@@ -186,18 +152,18 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="5dp"
-                            android:src="@drawable/icono"
+                            android:src="@drawable/ic_star_half_black_24dp"
+                            android:background="@drawable/icono"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             android:contentDescription="@string/icon"/>
 
                         <TextView
-                            android:id="@+id/textView2"
                             style="@style/legend"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Devolucion gratis"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/devolucion"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                             app:layout_constraintStart_toEndOf="@+id/imageView2"
                             app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -216,12 +182,12 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/color"
+                        android:id="@+id/categoria"
                         style="@style/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="Color : Azul" />
+                        tools:text="categoria" />
 
                     <View
                         style="@style/line"
@@ -230,12 +196,12 @@
                         android:background="@drawable/line" />
 
                     <TextView
-                        android:id="@+id/cantidad"
+                        android:id="@+id/cantidadDisponible"
                         style="@style/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Cantidad : 1" />
+                        tools:text="Cantidad disponible"/>
                 </LinearLayout>
 
 
@@ -269,7 +235,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/legend_footer" />
             </LinearLayout>
-        </LinearLayout>
     </ScrollView>
 
     <androidx.constraintlayout.widget.Guideline

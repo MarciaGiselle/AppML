@@ -1,7 +1,6 @@
-package com.example.appmeli.SearchProducts
+package com.example.appmeli.searchProducts
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,8 +22,6 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
 
     override fun getItemCount() = productList.size
 
-
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
         holder.title.text = product.title
@@ -40,8 +37,6 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
         holder.itemView.setOnClickListener{
             productClickListener?.onProductClick(product)
         }
-
-
     }
 
     fun updateArticles( results: List<Article>?){

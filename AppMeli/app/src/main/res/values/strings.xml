@@ -8,4 +8,9 @@
     <string name="search">Buscar en Mercado Libre</string>
     <string name="carrousel">carrousel</string>
     <string name="lupa">🔎</string>
+    <string name="cuotas">Cuotas sin interés</string>
+    <string name="devolucion">Devolución gratis</string>
+    <string name="color">Color : azul</string>
+    <string name="seeMore">Ver más</string>
+    <string name="imageProduct">imagen del producto</string>
 </resources>
