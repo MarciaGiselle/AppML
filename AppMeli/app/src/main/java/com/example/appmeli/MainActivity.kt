@@ -2,9 +2,11 @@ package com.example.appmeli
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appmeli.databinding.ActivityMainBinding
 import com.example.appmeli.searchProducts.*
 import com.squareup.picasso.Picasso
 import retrofit2.Call
@@ -15,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var productService : RetrofitProductService
     private lateinit var productAdapter : ProductAdapter
+    private lateinit var binding : ActivityMainBinding
+
 
     private fun injectDependencies(){
         productService = RetrofitProductService()
@@ -22,12 +26,13 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
         injectDependencies()
         setSearchListener()
         setUpRecyclerView()
 
-        val imageCarrousel1 = findViewById<ImageView>(R.id.imageCarrousel1)
+       val imageCarrousel1 = findViewById<ImageView>(R.id.imageCarrousel1)
         val imageCarrousel2 = findViewById<ImageView>(R.id.imageCarrousel2)
 
         Picasso.get()
@@ -42,9 +47,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerView(){
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerArticles)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = productAdapter
+        binding.recyclerArticles.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerArticles.adapter = productAdapter
         productAdapter.setProductClickListener(object : ProductClickListener {
             override fun onProductClick(article: Article) {
                  val intent = Intent(this@MainActivity, ProductActivity::class.java)
@@ -56,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSearchListener(){
-        findViewById<SearchView>(R.id.searchInput).setOnQueryTextListener(
+       binding.searchInput.setOnQueryTextListener(
             object :SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
                   onSearch(query)
