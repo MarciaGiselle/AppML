@@ -20,10 +20,13 @@
     <string name="category">Categoría :  %1$s</string>
     <string name="nuevo">Nuevo</string>
     <string name="usado">Usado</string>
+    <string name="garantia">Sin garantía</string>
 
     //Toast
     <string name="sinConexion"> Verifica tu conexión de red. La aplicación no funcionará correctamente.</string>
     <string name="notNetwork"> Ha ocurrido un problema con la red. No hay conexión disponible.</string>
+    <string name="error"> Ha ocurrido un error inesperado. Vuelva a intentarlo.</string>
+
 
 
 

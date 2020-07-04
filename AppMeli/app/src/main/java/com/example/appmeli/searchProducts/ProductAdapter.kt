@@ -27,6 +27,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
 
         Picasso.get()
             .load(product.imageUrl)
+            .placeholder(R.drawable.ic_gallery_icon_vector_26537164)
             .error(R.drawable.ic_android_error)
             .into(holder.binding.productImage)
 

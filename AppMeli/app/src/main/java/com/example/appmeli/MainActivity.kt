@@ -1,16 +1,13 @@
 package com.example.appmeli
 import android.content.Context
 import android.content.Intent
-import android.hardware.SensorManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -18,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appmeli.databinding.ActivityMainBinding
 import com.example.appmeli.searchProducts.*
-import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,8 +76,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun onSearch(query: String?){
         query?.run {
+            binding.bienvenido.visibility = View.GONE
             binding.progressCircular.visibility = View.VISIBLE
-            binding.progressCircular.isIndeterminate=  true
                 productService.search(query)
                     .enqueue(object :Callback<SearchResult> {
                         override fun onFailure(call: Call<SearchResult>, t: Throwable) {
@@ -94,14 +90,21 @@ class MainActivity : AppCompatActivity() {
                             call: Call<SearchResult>,
                             response: Response<SearchResult>
                         ) {
-                            if(response.isSuccessful){
+                            if(response.isSuccessful ){
                                 val articles = response.body()!!
                                 binding.progressCircular.visibility = View.INVISIBLE
 
-                                productAdapter.updateArticles( articles.results)
-                                productAdapter.notifyDataSetChanged()
+                                if(articles.results.isEmpty()){
+                                    toast = Toast.makeText(this@MainActivity, "No hay resultados, intenta nuevamente.", Toast.LENGTH_LONG)
+                                    toast.setGravity(Gravity.CENTER,0,0)
+                                    toast.show()
+                                }
+                                else{
+                                    productAdapter.updateArticles( articles.results)
+                                    productAdapter.notifyDataSetChanged()
+                                }
                             }else{
-                                Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@MainActivity, "Error interno", Toast.LENGTH_LONG).show()
 
                             }
                         }

@@ -2,6 +2,7 @@ package com.example.appmeli
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -36,10 +37,12 @@ class ProductActivity : AppCompatActivity() {
 
     private fun getArticle(query: String?){
         query?.run {
+            binding.progressCircular.visibility = View.VISIBLE
             productService.getArticle(query)
                 .enqueue(object : Callback<ArticleResponse> {
                     override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
-                        Toast.makeText(this@ProductActivity, "Error : ${t.message}", Toast.LENGTH_LONG).show()
+                        binding.progressCircular.visibility = View.INVISIBLE
+                        Toast.makeText(this@ProductActivity, R.string.notNetwork, Toast.LENGTH_LONG).show()
                     }
 
                     override fun onResponse(
@@ -47,9 +50,10 @@ class ProductActivity : AppCompatActivity() {
                         response: Response<ArticleResponse>
                     ) {
                         if(response.isSuccessful){
+                            binding.progressCircular.visibility = View.INVISIBLE
                             setResultProduct(response.body()!!)
                         }else{
-                            Toast.makeText(this@ProductActivity, "Error", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@ProductActivity, R.string.error, Toast.LENGTH_LONG).show()
 
                         }
                     }
@@ -64,15 +68,18 @@ class ProductActivity : AppCompatActivity() {
         binding.subtitle.text = body.subtitle ?: body.id
         binding.priceProduct.text = getString(R.string.signoPeso, body.price)
         binding.quantity.text = getString(R.string.quantity, body.quantity)
-        binding.warranty.text = body.warranty
+        binding.warranty.text = if (body.warranty != null) body.warranty else getString(R.string.garantia)
         binding.condicioncantidad.text =
             getString(R.string.state, if (body.condition == "new") getString(R.string.nuevo) else getString(R.string.usado), body.quantitySold )
 
         binding.mercadoPago.text = if (body.mercadoPago) getString(R.string.mercadoPago) else getString(R.string.cuotas)
         binding.categoria.text = getString(R.string.category, body.categoryId)
 
+        binding.legend.text = getString(R.string.devolucion)
+
         Picasso.get()
             .load(body.imageUrl)
+            .placeholder(R.drawable.ic_gallery_icon_vector_26537164)
             .error(R.drawable.ic_android_error)
             .into(binding.imageProduct)
     }
