@@ -1,11 +1,21 @@
 package com.example.appmeli
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.hardware.SensorManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
-import android.widget.*
+import android.view.View
+import android.widget.ImageView
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.appmeli.databinding.ActivityMainBinding
 import com.example.appmeli.searchProducts.*
 import com.squareup.picasso.Picasso
@@ -13,17 +23,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var productService : RetrofitProductService
     private lateinit var productAdapter : ProductAdapter
     private lateinit var binding : ActivityMainBinding
-
+    private lateinit  var toast : Toast
 
     private fun injectDependencies(){
         productService = RetrofitProductService()
         productAdapter = ProductAdapter()
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
@@ -31,19 +43,11 @@ class MainActivity : AppCompatActivity() {
         injectDependencies()
         setSearchListener()
         setUpRecyclerView()
-
-       val imageCarrousel1 = findViewById<ImageView>(R.id.imageCarrousel1)
-        val imageCarrousel2 = findViewById<ImageView>(R.id.imageCarrousel2)
-
-        Picasso.get()
-            .load(R.drawable.ic_bannermeli_tarjeta)
-            .error(R.drawable.ic_android_error)
-            .into(imageCarrousel1)
-
-        Picasso.get()
-            .load(R.drawable.ic_bannermeli_dos)
-            .error(R.drawable.ic_android_error)
-            .into(imageCarrousel2)
+      if( ! isOnline(this)){
+        toast = Toast.makeText(this@MainActivity, R.string.sinConexion, Toast.LENGTH_LONG)
+          toast.setGravity(Gravity.CENTER,0,0)
+          toast.show()
+      }
     }
 
     private fun setUpRecyclerView(){
@@ -76,18 +80,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun onSearch(query: String?){
         query?.run {
+            binding.progressCircular.visibility = View.VISIBLE
+            binding.progressCircular.isIndeterminate=  true
                 productService.search(query)
                     .enqueue(object :Callback<SearchResult> {
                         override fun onFailure(call: Call<SearchResult>, t: Throwable) {
-                            Toast.makeText(this@MainActivity, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                            binding.progressCircular.visibility = View.INVISIBLE
+                            toast =  Toast.makeText(this@MainActivity, R.string.notNetwork, Toast.LENGTH_LONG)
+                                toast.setGravity(Gravity.CENTER,0,0)
+                                toast.show()
                         }
-
                         override fun onResponse(
                             call: Call<SearchResult>,
                             response: Response<SearchResult>
                         ) {
                             if(response.isSuccessful){
                                 val articles = response.body()!!
+                                binding.progressCircular.visibility = View.INVISIBLE
+
                                 productAdapter.updateArticles( articles.results)
                                 productAdapter.notifyDataSetChanged()
                             }else{
@@ -97,6 +107,34 @@ class MainActivity : AppCompatActivity() {
                         }
                     })
             }
+
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                    return true
+                }
+            }
+        } else {
+        val activeNetworkInfo = connectivityManager.activeNetwork
+            if (activeNetworkInfo != null) {
+                return true
+            }
+        }
+        return false
     }
 }
-

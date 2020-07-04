@@ -61,14 +61,15 @@ class ProductActivity : AppCompatActivity() {
     private fun setResultProduct(body: ArticleResponse) {
 
         binding.titleProduct.text = body.title
-        binding.subtitle.text =  if (body.subtitle != null) body.subtitle else body.id
-        binding.priceProduct.text = "$ " + body.price
-        binding.quantity.text = "Cantidad disponible : " + body.quantity
-        binding.warranty.text = if (body.warranty !=null ) body.warranty else "Sin garantía"
+        binding.subtitle.text = body.subtitle ?: body.id
+        binding.priceProduct.text = getString(R.string.signoPeso, body.price)
+        binding.quantity.text = getString(R.string.quantity, body.quantity)
+        binding.warranty.text = body.warranty
         binding.condicioncantidad.text =
-            """${if (body.condition == "new") "Nuevo" else "Usado"} - ${body.quantitySold} vendidos"""
-        binding.mercadoPago.text = if (body.mercadoPago) "Acepta Mercado Pago" else "Cuotas sin interés"
-        binding.categoria.text = "Categoría : " + body.categoryId
+            getString(R.string.state, if (body.condition == "new") getString(R.string.nuevo) else getString(R.string.usado), body.quantitySold )
+
+        binding.mercadoPago.text = if (body.mercadoPago) getString(R.string.mercadoPago) else getString(R.string.cuotas)
+        binding.categoria.text = getString(R.string.category, body.categoryId)
 
         Picasso.get()
             .load(body.imageUrl)

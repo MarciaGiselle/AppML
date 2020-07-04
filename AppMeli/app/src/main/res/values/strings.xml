@@ -13,4 +13,19 @@
     <string name="color">Color : azul</string>
     <string name="seeMore">Ver más</string>
     <string name="imageProduct">imagen del producto</string>
+    <string name="signoPeso">$ %1$s</string>
+    <string name="quantity">Cantidad disponible :  %1$s</string>
+    <string name="state">%1$s - %2$s vendidos</string>
+    <string name="mercadoPago">Acepta Mercado Pago</string>
+    <string name="category">Categoría :  %1$s</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="usado">Usado</string>
+
+    //Toast
+    <string name="sinConexion"> Verifica tu conexión de red. La aplicación no funcionará correctamente.</string>
+    <string name="notNetwork"> Ha ocurrido un problema con la red. No hay conexión disponible.</string>
+
+
+
+
 </resources>
