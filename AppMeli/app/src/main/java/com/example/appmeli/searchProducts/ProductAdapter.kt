@@ -11,6 +11,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
     private val productList = mutableListOf<Article>()
     private var productClickListener : ProductClickListener? = null
 
+    //cuando no existe una vista y debe crearla - esta en memoria,  tiene la referencia a la vista
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val productView = ListItemProductBinding.inflate( LayoutInflater.from(parent.context),  parent, false)
         return ProductViewHolder(productView)
@@ -36,6 +37,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
         }
     }
 
+    //para poder acualizar el dataset
     fun updateArticles( results: List<Article>?){
         productList.clear()
         if(results != null) {
@@ -49,6 +51,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>(){
 
 }
 
+//clase que mapea los elementos de la vista
 class  ProductViewHolder( val binding: ListItemProductBinding): RecyclerView.ViewHolder(binding.root)
 
 interface ProductClickListener{

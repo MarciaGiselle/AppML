@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         productService = RetrofitProductService()
         productAdapter = ProductAdapter()
     }
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
